@@ -13,4 +13,5 @@ class Astronaut < ApplicationRecord
 
 
 
+
 end

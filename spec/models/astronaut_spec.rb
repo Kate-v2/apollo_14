@@ -34,6 +34,26 @@ describe Astronaut, type: :model do
       expect(Astronaut.all.count).to eq(2)
     end
 
+    it 'can retrieve missions through astronaut' do
+      missions = @astronaut1.missions
+      count    = missions.count
+      first    = missions.first
+
+      expect(count).to eq(3)
+      expect(first.title).to eq("Mission 1")
+
+    end
+
+    it 'can create missions through astronaut' do
+      count1 = @astronaut1.missions.count
+      expect(count1).to eq(3)
+
+      @astronaut1.missions.create!(title: "New 1", time_in_space: 10)
+
+      count2 = @astronaut1.missions.count
+      expect(count2).to eq(4)
+    end
+
   end
 
   describe 'Calculations' do
