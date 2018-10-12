@@ -10,7 +10,15 @@ class Astronaut < ApplicationRecord
     average(:age)
   end
 
+  def self.time_in_space
+    select('astronauts.*, SUM(missions.time_in_space) AS total_time')
+    .joins(:missions)
+    .group(:astronaut_id, :id)
+  end
 
+  def alphabetical_missions
+    missions.order(:title)
+  end
 
 
 

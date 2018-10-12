@@ -58,12 +58,33 @@ describe Astronaut, type: :model do
 
   describe 'Calculations' do
 
-    # Would rather this be dynamic to astronauts
-    # shown, but that's not a task
     it 'can average age of all astronauts' do
       expected = 15
       age = Astronaut.average_age
       expect(age).to eq(expected)
+    end
+
+    it 'can create an astronaut table with total time in space' do
+      temp = Astronaut.time_in_space
+      a1_id = @astronaut1.id
+      a1    = temp.find(a1_id)
+      expected = 600
+      total    = a1.total_time
+      expect(total).to eq(expected)
+    end
+
+  end
+
+  describe 'Sorting' do
+
+    it "can sort an astronaut's missions in alphabetical order by title" do
+      @astronaut1.missions.create(title: "A new mission", time_in_space: 10)
+      first = @astronaut1.missions.first.title
+      expect(first).to eq("Mission 1")
+
+      sorted = @astronaut1.alphabetical_missions
+      first = sorted.first.title
+      expect(first).to eq("A new mission")
     end
 
 
