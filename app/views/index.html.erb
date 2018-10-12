@@ -1,0 +1,24 @@
+
+<div id="astronauts">
+  <% @astronauts.each do |astro| %>
+    <span class="astronaut">
+      <p>Name: <% astro.name %></p>
+      <p>Age: <% astro.age %></p>
+      <p>Job: <% astro.job %></p>
+        <div class="astro-missions">
+          <% astro.alphabetical_missions.each do |mission| %>
+            <p>Title: <% mission.title %></p>
+
+
+          <% end %>
+        </div>
+
+
+    </span>
+  <% end %>
+
+
+
+
+
+</div>
